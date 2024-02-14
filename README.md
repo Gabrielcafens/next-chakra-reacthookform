@@ -1,40 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Chakra UI React Hook Form Project
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Este é um projeto simples usando Next.js, Chakra UI e React Hook Form para criar um formulário de registro.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Telas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/32a6ea16-3eaf-4ec6-ae5e-0bdbc9fac15c)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/65103294-c7e0-4c0b-8d5a-48e743563ed8)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Como Executar o Projeto
 
-## Learn More
+Certifique-se de ter o Node.js instalado. Em seguida, siga estas etapas:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone o repositório:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/Gabrielcafens/next-chakra-reacthookform.git
+2. Abra a pasta
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   cd next-chakra-reacthookform
+3.Instale as dependências:
 
-## Deploy on Vercel
+    ```bash
+    npm install
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.Execute o projeto:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```bash
+    npm run dev
+O projeto estará disponível em http://localhost:3000.
+
+5.Estrutura do Projeto
+
+src/: Contém os arquivos fonte do projeto.
+pages/: Páginas do Next.js.
+components/: Componentes reutilizáveis.
+...
+6.Tecnologias Utilizadas
+
+React
+Next.js
+Chakra UI
+React Hook Form
+Yup
+7.Funcionalidades Principais
+
+Formulário de Registro com validação usando Yup.
+Estilização consistente com Chakra UI.
+
+ 8.Observações
+
+- Este projeto está em constante desenvolvimento e novas funcionalidades serão adicionadas futuramente.
+
+```                         ___
+
+                          ___
+                      .-'   `'.
+                     /         \
+                     |         ;
+                     |         |           ___.--,
+            _.._     |0) = (0) |    _.---'`__.-( (_.
+     __.--'`_.. '.__.\    '--. \_.-' ,.--'`     `""`
+    ( ,.--'`   ',__ /./;   ;, '.__.'`    __
+    _`) )  .---.__.' / |   |\   \__..--""  """--.,_
+   `---' .'.''-._.-'`_./  /\ '.  \ _.--''````'''--._`-.__.'
+         | |  .' _.-' |  |  \  \  '.               `----`
+          \ \/ .'     \  \   '. '-._)
+           \/ /        \  \    `=.__`'-.
+           / /\         `) )    / / `"".`\
+     , _.-'.'\ \        / /    ( (     / /
+      `--'`   ) )    .-'.'      '.'.  | (
+             (/`    ( (`          ) )  '-;    
+            
+  ( (                ( (                 ( (                
+   ) )                ) )                 ) )               
+.........           .........         .........           
+|       |]         |       |]         |       |]                
+\       /           \       /         \       /              
+ `-----'             `-----'           `-----'  
