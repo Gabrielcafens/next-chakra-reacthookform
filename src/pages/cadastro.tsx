@@ -6,7 +6,6 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input,
   Text,
   Textarea,
 } from '@chakra-ui/react';
@@ -15,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import InputMask from 'react-input-mask';
+import { InputProps, InputBase } from './components/Address';
 
 interface IUserFormData {
   firstName: string;
@@ -25,8 +25,6 @@ interface IUserFormData {
   description: string;
 }
 
-
-
 const schema = yup.object({
   firstName: yup.string().required('O primeiro nome é obrigatório'),
   lastName: yup.string().required('O sobrenome é obrigatório'),
@@ -34,27 +32,29 @@ const schema = yup.object({
   address: yup.string().required('O endereço é obrigatório'),
   description: yup.string().required('A descrição é obrigatória'),
   phone: yup
-  .string()
-  .transform(value => (value ? value.replace(/\D/g, '') : ''))
-  .matches(/^\d+$/, 'Digite apenas números')
-  .min(10, 'O telefone deve ter no mínimo 10 dígitos')
-  .max(11, 'O telefone deve ter no máximo 11 dígitos')
-  .required('O telefone é obrigatório'),
+    .string()
+    .transform(value => (value ? value.replace(/\D/g, '') : ''))
+    .matches(/^\d+$/, 'Digite apenas números')
+    .min(10, 'O telefone deve ter no mínimo 10 dígitos')
+    .max(11, 'O telefone deve ter no máximo 11 dígitos')
+    .required('O telefone é obrigatório'),
 });
 
 export const Cadastro: FunctionComponent = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState
+
   } = useForm<IUserFormData>({
     resolver: yupResolver(schema),
   });
 
-  
+
   const onSubmit = (data: IUserFormData) => {
     console.log(data);
   };
+  console.log(formState.errors);
 
   return (
     <>
@@ -64,144 +64,131 @@ export const Cadastro: FunctionComponent = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Flex
-          minHeight="100vh"
+      <Flex
+        minHeight="100vh"
+        width="full"
+        align="center"
+        justifyContent="center"
+        backgroundColor="gray.900"
+      >
+        <Box
+          px={12}
+          py={12}
           width="full"
-          align="center"
-          justifyContent="center"
-          backgroundColor="gray.900"
+          maxWidth="450px"
+          textAlign="center"
+          boxShadow="lg"
+          background="gray.700"
+          borderRadius="6px"
         >
-          <Box
-            px={12}
-            py={12}
-            width="full"
-            maxWidth="450px"
-            textAlign="center"
-            boxShadow="lg"
-            background="gray.700"
-            borderRadius="6px"
+          <Heading>
+            <Text color="gray.200" fontSize="2xl">
+              Registro
+            </Text>
+          </Heading>
+          <form
+            action=""
+            autoComplete="off"
+            onSubmit={handleSubmit(onSubmit)}
           >
-            <Heading>
-              <Text color="gray.200" fontSize="2xl">
-                Registro
-              </Text>
-            </Heading>
-            <form
-              action=""
-              autoComplete="off"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Nome</FormLabel>
-                <Input
-                  type="text"
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  placeholder="Nome"
-                  {...register('firstName')} 
-                />
-                <p style={{ color: 'red' }}>{errors?.firstName?.message}</p>
-              </FormControl>
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Sobrenome</FormLabel>
-                <Input
-                  type="text"
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  placeholder="Seu Sobrenome"
-                  {...register('lastName')}
-                />
-                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                  {errors?.lastName?.message}
-                </Text>
-              </FormControl>
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Seu e-mail</FormLabel>
-                <Input
-                  type="text"
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  placeholder="Seu Email"
-                  {...register('email')}
-                />
-                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                  {errors?.email?.message}
-                </Text>
-              </FormControl>
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Endereço</FormLabel>
-                <Input
-                  type="text"
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  placeholder="Seu Endereço"
-                  {...register('address')}
-                />
-                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                  {errors?.address?.message}
-                </Text>
-              </FormControl>
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Telefone</FormLabel>
-                <InputMask
-                  mask="(99) 99999-9999"
-                  maskChar=""
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  placeholder="Seu Telefone"
-                  {...register('phone')}
-                />
-                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                  {errors?.phone?.message}
-                </Text>
-              </FormControl>
 
-              <FormControl marginTop="15px">
-                <FormLabel color="gray.200">Mensagem</FormLabel>
-                <Textarea
-                  border="none"
-                  outline="none"
-                  bgColor="gray.900"
-                  focusBorderColor="gray.600"
-                  color="gray.200"
-                  resize="none"
-                  placeholder="Sua mensagem"
-                  {...register('description')}
-                />
-                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                {errors?.description?.message}
-                </Text>
-              </FormControl>
-              <Button
-                type="submit"
-                width="full"
-                bgColor="green.400"
-                mt={4}
-                color="gray.200"
-                _hover={{
-                  color: 'black',
+            <InputBase
+              error={formState.errors?.firstName}
+              label='Nome'
+              type='text'
+              reference='firstName'
+              placeholder='Nome'
+              {...register('firstName')}
+            />
+
+            <InputBase
+              error={formState.errors?.lastName}
+              label='Seu Sobrenome'
+              type='text'
+              reference='lastName'
+              placeholder="Seu Sobrenome"
+              {...register('lastName')}
+            />
+
+
+            <InputBase
+              error={formState.errors?.email}
+              label='Seu Email'
+              type='text'
+              reference='email'
+              placeholder="Seu Email"
+              {...register('email')}
+            />
+
+
+            <InputBase
+              error={formState.errors?.address}
+              label='Seu Endereço'
+              type='text'
+              reference='address'
+              placeholder="Seu Endereço"
+              {...register('address')}
+            />
+
+
+            <FormControl marginTop="15px">
+              <FormLabel color="gray.200">Telefone</FormLabel>
+              <InputMask
+                mask="(99) 99999-9999"
+                maskChar=""
+                style={{
+                  width: "354px",
+                  backgroundColor: '#171923',
+                  color: '#E2E8F0',
+                  borderRadius: 4,
+                  outline: 4,
+                  padding: 8,
+                  fontSize: "md",
+                  transition: "border-color 0.3s",
+                  borderColor: '#4A5568',
                 }}
-              >
-                Registro com yup
-              </Button>
-            </form>
-          </Box>
-        </Flex>     
+                placeholder="Seu Telefone"
+                {...register('phone')}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#4299E1';
+                }}
+                
+              />
+              <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                {formState.errors?.phone?.message}
+              </Text>
+            </FormControl>
+            
+            <FormLabel color="gray.200">Mensagem</FormLabel>
+            <Textarea
+              border="none"
+              outline="none"
+              bgColor="gray.900"
+              focusBorderColor="gray.600"
+              color="gray.200"
+              resize="none"
+              placeholder="Sua mensagem"
+              {...register('description')}
+            />
+            <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+              {formState.errors?.description?.message}
+            </Text>
+
+            <Button
+              type="submit"
+              width="full"
+              bgColor="green.400"
+              mt={4}
+              color="gray.200"
+              _hover={{
+                color: 'black',
+              }}
+            >
+              Registro com yup
+            </Button>
+          </form>
+        </Box>
+      </Flex>
     </>
   );
 };
