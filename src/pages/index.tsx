@@ -52,7 +52,6 @@ interface IHomePops {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
         <Flex
           minHeight='100vh'
           width='full'
@@ -194,7 +193,6 @@ interface IHomePops {
             </Box>
           </Box>
         </Flex>
-      </main>
     </>
   )
 }

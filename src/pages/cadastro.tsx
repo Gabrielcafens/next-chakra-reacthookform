@@ -14,6 +14,7 @@ import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputMask from 'react-input-mask';
 
 interface IUserFormData {
   firstName: string;
@@ -24,13 +25,21 @@ interface IUserFormData {
   description: string;
 }
 
+
+
 const schema = yup.object({
   firstName: yup.string().required('O primeiro nome é obrigatório'),
   lastName: yup.string().required('O sobrenome é obrigatório'),
   email: yup.string().email('E-mail inválido').required('O e-mail é obrigatório'),
   address: yup.string().required('O endereço é obrigatório'),
-  phone: yup.string().transform(value => (value ? value.replace(/\D/g, '') : '')).matches(/^\d+$/, 'Digite apenas números').required('O telefone é obrigatório'),
   description: yup.string().required('A descrição é obrigatória'),
+  phone: yup
+  .string()
+  .transform(value => (value ? value.replace(/\D/g, '') : ''))
+  .matches(/^\d+$/, 'Digite apenas números')
+  .min(10, 'O telefone deve ter no mínimo 10 dígitos')
+  .max(11, 'O telefone deve ter no máximo 11 dígitos')
+  .required('O telefone é obrigatório'),
 });
 
 export const Cadastro: FunctionComponent = () => {
@@ -42,6 +51,7 @@ export const Cadastro: FunctionComponent = () => {
     resolver: yupResolver(schema),
   });
 
+  
   const onSubmit = (data: IUserFormData) => {
     console.log(data);
   };
@@ -54,7 +64,6 @@ export const Cadastro: FunctionComponent = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
         <Flex
           minHeight="100vh"
           width="full"
@@ -92,7 +101,7 @@ export const Cadastro: FunctionComponent = () => {
                   focusBorderColor="gray.600"
                   color="gray.200"
                   placeholder="Nome"
-                  {...register('firstName')}
+                  {...register('firstName')} 
                 />
                 <p style={{ color: 'red' }}>{errors?.firstName?.message}</p>
               </FormControl>
@@ -108,7 +117,9 @@ export const Cadastro: FunctionComponent = () => {
                   placeholder="Seu Sobrenome"
                   {...register('lastName')}
                 />
-                <p style={{ color: 'red' }}>{errors?.lastName?.message}</p>
+                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                  {errors?.lastName?.message}
+                </Text>
               </FormControl>
               <FormControl marginTop="15px">
                 <FormLabel color="gray.200">Seu e-mail</FormLabel>
@@ -122,7 +133,9 @@ export const Cadastro: FunctionComponent = () => {
                   placeholder="Seu Email"
                   {...register('email')}
                 />
-                <p style={{ color: 'red' }}>{errors?.email?.message}</p>
+                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                  {errors?.email?.message}
+                </Text>
               </FormControl>
               <FormControl marginTop="15px">
                 <FormLabel color="gray.200">Endereço</FormLabel>
@@ -136,14 +149,15 @@ export const Cadastro: FunctionComponent = () => {
                   placeholder="Seu Endereço"
                   {...register('address')}
                 />
-                <p style={{ color: 'red' }}>{errors?.address?.message}</p>
+                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                  {errors?.address?.message}
+                </Text>
               </FormControl>
               <FormControl marginTop="15px">
                 <FormLabel color="gray.200">Telefone</FormLabel>
-                <Input
-                  type="tel"
-                  pattern="[0-9]*"
-                  inputMode="numeric"
+                <InputMask
+                  mask="(99) 99999-9999"
+                  maskChar=""
                   border="none"
                   outline="none"
                   bgColor="gray.900"
@@ -152,8 +166,11 @@ export const Cadastro: FunctionComponent = () => {
                   placeholder="Seu Telefone"
                   {...register('phone')}
                 />
-                <p style={{ color: 'red' }}>{errors?.phone?.message}</p>
+                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                  {errors?.phone?.message}
+                </Text>
               </FormControl>
+
               <FormControl marginTop="15px">
                 <FormLabel color="gray.200">Mensagem</FormLabel>
                 <Textarea
@@ -166,7 +183,9 @@ export const Cadastro: FunctionComponent = () => {
                   placeholder="Sua mensagem"
                   {...register('description')}
                 />
-                <p style={{ color: 'red' }}>{errors?.description?.message}</p>
+                <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
+                {errors?.description?.message}
+                </Text>
               </FormControl>
               <Button
                 type="submit"
@@ -182,8 +201,7 @@ export const Cadastro: FunctionComponent = () => {
               </Button>
             </form>
           </Box>
-        </Flex>
-      </main>
+        </Flex>     
     </>
   );
 };
