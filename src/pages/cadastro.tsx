@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import InputMask from 'react-input-mask';
-import { InputProps, InputBase } from './components/Address';
+import { Input, InputBase } from './components/Address';
 
 interface IUserFormData {
   firstName: string;
@@ -56,6 +56,7 @@ export const Cadastro: FunctionComponent = () => {
   };
   console.log(formState.errors);
 
+
   return (
     <>
       <Head>
@@ -92,16 +93,16 @@ export const Cadastro: FunctionComponent = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
 
-            <InputBase
+            <Input
               error={formState.errors?.firstName}
-              label='Nome'
-              type='text'
-              reference='firstName'
-              placeholder='Nome'
+              label="Nome"
+              type="text"
+              reference="firstName"
+              placeholder="Nome"
               {...register('firstName')}
             />
 
-            <InputBase
+            <Input
               error={formState.errors?.lastName}
               label='Seu Sobrenome'
               type='text'
@@ -111,7 +112,7 @@ export const Cadastro: FunctionComponent = () => {
             />
 
 
-            <InputBase
+            <Input
               error={formState.errors?.email}
               label='Seu Email'
               type='text'
@@ -121,7 +122,7 @@ export const Cadastro: FunctionComponent = () => {
             />
 
 
-            <InputBase
+            <Input
               error={formState.errors?.address}
               label='Seu Endereço'
               type='text'
@@ -131,48 +132,64 @@ export const Cadastro: FunctionComponent = () => {
             />
 
 
-            <FormControl marginTop="15px">
-              <FormLabel color="gray.200">Telefone</FormLabel>
+            <FormControl display="flex" flexDirection="column" alignItems="flex-start" marginTop="15px" borderColor={formState.errors?.description ? '#E53E3E' : '#4A5568'}>
+              {formState.errors?.phone ? (
+                <Text as="span" style={{ textTransform: 'capitalize', color: '#E53E3E', marginBottom: '5px' }}>
+                  {formState.errors?.phone?.message}
+                </Text>
+              ) : (
+                <FormLabel color="gray.200">
+                  Telefone
+                </FormLabel>
+              )}
               <InputMask
                 mask="(99) 99999-9999"
                 maskChar=""
                 style={{
-                  width: "354px",
+                  width: "100%",
                   backgroundColor: '#171923',
                   color: '#E2E8F0',
                   borderRadius: 4,
                   outline: 4,
-                  padding: 8,
+                  padding: "8px 16px",
                   fontSize: "md",
-                  transition: "border-color 0.3s",
-                  borderColor: '#4A5568',
+                  border: "1px solid",
+                  borderColor: formState.errors?.phone ? '#E53E3E' : '#4A5568',
                 }}
                 placeholder="Seu Telefone"
                 {...register('phone')}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#4299E1';
-                }}
-                
               />
-              <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-                {formState.errors?.phone?.message}
-              </Text>
+
             </FormControl>
-            
-            <FormLabel color="gray.200">Mensagem</FormLabel>
-            <Textarea
-              border="none"
-              outline="none"
-              bgColor="gray.900"
-              focusBorderColor="gray.600"
-              color="gray.200"
-              resize="none"
-              placeholder="Sua mensagem"
-              {...register('description')}
-            />
-            <Text as="span" style={{ textTransform: 'capitalize', color: 'red' }}>
-              {formState.errors?.description?.message}
-            </Text>
+
+            <FormControl
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              marginTop="15px"
+              borderColor={formState.errors?.description ? '#E53E3E' : '#4A5568'}
+            >
+              {formState.errors?.description ? (
+                <Text as="span" style={{ textTransform: 'capitalize', color: '#E53E3E', marginBottom: '5px' }}>
+                  {formState.errors?.description?.message}
+                </Text>
+              ) : (
+                <FormLabel color='white'>
+                  Mensagem
+                </FormLabel>
+              )}
+              <Textarea
+                border="1px"
+                borderColor={formState.errors?.description ? '#E53E3E' : '#4A5568'}
+                outline="none"
+                bgColor="gray.900"
+                focusBorderColor={formState.errors?.description ? '#E53E3E' : '#4A5568'}
+                color="gray.200"
+                resize="none"
+                placeholder="Sua mensagem"
+                {...register('description')}
+              />
+            </FormControl>
 
             <Button
               type="submit"
