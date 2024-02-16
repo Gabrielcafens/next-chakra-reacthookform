@@ -14,6 +14,7 @@ Este é um projeto simples usando Next.js, Chakra UI e React Hook Form para cria
 
 ![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/99582724-a584-40ad-9600-885a48fc121d)
 
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/45b9ad7c-b823-47ce-a991-60654ad6a704)
 
 
 ## Como Executar o Projeto
