@@ -6,11 +6,14 @@ Este é um projeto simples usando Next.js, Chakra UI e React Hook Form para cria
 
 ## Telas
 
-![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/32a6ea16-3eaf-4ec6-ae5e-0bdbc9fac15c)
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/80c2290b-8b46-4ed0-9acd-ea488499ae53)
 
-![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/f8f9b0b2-09b5-4355-98c4-cc8cf45fda24)
 
-![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/65103294-c7e0-4c0b-8d5a-48e743563ed8)
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/dc213a2d-fd03-4810-8d5b-67a7ec58c280)
+
+
+![image](https://github.com/Gabrielcafens/next-chakra-reacthookform/assets/95833512/99582724-a584-40ad-9600-885a48fc121d)
+
 
 
 ## Como Executar o Projeto
